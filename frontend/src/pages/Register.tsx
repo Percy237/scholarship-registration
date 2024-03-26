@@ -4,6 +4,7 @@ import * as apiClient from "../api-client";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type RegistrationFormData = {
     fullName: string;
@@ -14,7 +15,7 @@ export type RegistrationFormData = {
 
 const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
-
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -36,6 +37,9 @@ const Register = () => {
         });
         reset();
         setIsLoading(false);
+         setTimeout(() => {
+          navigate("/admin-dashboard")
+        }, 3000);
         },
         onError: (error: Error) => {
             toast.error(error.message, {
